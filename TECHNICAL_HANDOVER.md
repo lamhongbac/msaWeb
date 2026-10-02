@@ -26,6 +26,7 @@ Dự án bám sát cấu trúc chuẩn của Laravel, các thành phần bị ch
 - **`routes/web.php`**: Định tuyến toàn bộ web (Trang chủ, Khóa học, Xử lý form, Admin).
 - **`database/database.sqlite`**: File Database SQLite chứa dữ liệu thật (Bắt buộc phải set quyền Write 775/777 trên host).
 - **`zalo_receivers.json`**: (Root dir) File cấu hình Zalo, lưu trữ Token và danh sách người nhận thông báo.
+- **`config/seo.php`**: Chứa toàn bộ cấu hình lấy giá trị SEO (Tiêu đề, Mô tả, Từ khóa) từ file `.env`.
 - **`public/css/theme-mongo.css`**: File CSS chứa UI token, color palette (Xanh/Cam).
 - **`resources/views/`**:
   - `welcome.blade.php`: Trang chủ chính.
@@ -94,15 +95,20 @@ Nằm tại `public/css/theme-mongo.css`:
 
 ---
 
-## 7. Triển khai (Deployment Checklist)
-Khi đẩy code lên Server / Hosting (Shared Hosting, cPanel, DirectAdmin):
-1. **Nén ZIP:** Nén toàn bộ cả thư mục `vendor` và file `database.sqlite` để upload (Tránh việc không chạy được `composer install` trên Shared Host).
-2. **File `.env`:** 
-   - `APP_ENV=production`
-   - `APP_DEBUG=false`
-   - `APP_URL=https://yourdomain.com`
+## 7. Quy trình Quản lý Code bằng Git (VCS)
+- Dự án sử dụng GitHub, URL: `https://github.com/lamhongbac/msaWeb.git`
+- **Nhánh `dev`**: Dùng cho lập trình cục bộ. Các cấu hình nhạy cảm (.env, sqlite) bị bỏ qua (.gitignore).
+- **Nhánh `prod`**: Dùng để lưu trữ bộ file `.env.production` chuẩn (đã tắt Debug, trỏ tên miền thật, cấu hình SEO). 
+- **Quy tắc Deploy:** Không deploy qua git pull trên shared host (để tránh rủi ro bảo mật file .env và DB). Thay vào đó, tải code từ nhánh `prod`, copy nội dung `.env.production` đè vào `.env`, nén thành ZIP rồi tải lên Hosting.
+
+---
+
+## 8. Triển khai (Deployment Checklist)
+Khi đẩy code lên Server / Hosting (Shared Hosting, DirectAdmin):
+1. **Kiểm tra PHP Version & Composer:** Máy chủ (Host) yêu cầu cấu hình PHP >= 8.2 (hiện tại host Mắt Bão đang chạy PHP 8.3.33). Đã cấu hình `platform-check: false` trong `composer.json` để bỏ qua lỗi tương thích giả khi build `vendor` cục bộ bằng PHP bản cao hơn.
+2. **Nén ZIP:** Nén toàn bộ cả thư mục `vendor` và file `database.sqlite` để upload. Xóa lệnh `php artisan config:clear` thừa khỏi file `.env` trước khi nén để tránh lỗi Parse DotEnv.
 3. **Phân quyền (Chmod):** Set quyền Write (`775` hoặc `777`) cho:
    - Thư mục `storage` và thư mục con `storage/logs`.
    - File Database `database/database.sqlite` và nguyên cái folder chứa nó là `database`.
    - File cấu hình Zalo `zalo_receivers.json`.
-4. **Public Directory:** Nếu đưa lên Shared Hosting (DirectAdmin) dùng `public_html`, tạo 1 file `.htaccess` chuyển hướng luồng traffic vào thư mục `public/` (Xem hướng dẫn chi tiết trong file `DEPLOYMENT_DIRECTADMIN.md`).
+4. **Public Directory:** Tạo 1 file `.htaccess` chuyển hướng luồng traffic vào thư mục `public/` (Theo hướng dẫn `DEPLOYMENT_DIRECTADMIN.md`). Đảm bảo không dính các tag markdown ```apache vào trong file thực tế.

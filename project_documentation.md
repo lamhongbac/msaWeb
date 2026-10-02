@@ -4,11 +4,13 @@
 **LandingPageAIChampionFnB** là một ứng dụng Web được xây dựng trên framework **Laravel**, sử dụng cơ sở dữ liệu **SQLite**. 
 Hệ thống hiện tại đóng vai trò là một cổng thông tin (Portal) chuyên biệt, giới thiệu các dịch vụ tư vấn AI của MS-Apptech và khóa học F&B. Nó cho phép khách hàng đăng ký nhận tư vấn và quản trị viên quản lý danh sách tập trung.
 
-**Tính năng cốt lõi (Cập nhật mới nhất):**
+**Tính năng cốt lõi (Cập nhật mới nhất - Đã hoàn thiện Version 1):**
 - Hiển thị Trang chủ tổng hợp dịch vụ và Trang chi tiết khóa học với giao diện phong cách **MongoDB-inspired** (Sạch sẽ, hiện đại, màu Xanh/Cam SAOMAI).
 - Form thu thập thông tin khách hàng tiềm năng linh hoạt, **tự động nhận diện dịch vụ khách quan tâm** và thay đổi kích thước tối ưu (75% scale native).
 - Hệ thống UI được Module hóa (Components dùng chung) như Header, Footer, Modal với các hiệu ứng Animation mượt mà.
 - Tích hợp **API Zalo OA** với cơ chế **Auto-Refresh Token thông minh** và cấu hình gửi tin nhắn hàng loạt từ file JSON.
+- **Trang Quản trị Admin (Nâng cấp):** Bổ sung công cụ Tìm kiếm (Search) theo tên/sđt, Bộ lọc đa chiều (Lọc theo trạng thái xử lý, Lọc theo dịch vụ), và cơ chế Phân trang (Pagination) mượt mà.
+- **Tối ưu SEO:** Toàn bộ Tiêu đề (Title), Mô tả (Description) và Từ khóa (Keywords) được quản lý qua `config/seo.php` và file `.env`, cho phép thay đổi tùy biến mà không cần sửa code.
 - Đóng gói triển khai (Deployment) siêu nhẹ, toàn bộ DB và mã nguồn được tích hợp chung.
 
 ---
@@ -83,7 +85,13 @@ Hệ thống được thiết kế để dễ dàng triển khai nhất trên c�
    - Toàn bộ Source Code (bao gồm thư mục Vendor) và file Database SQLite (`database/database.sqlite`) đã được nén chung thành 1 file ZIP.
    - **Quá trình Deploy lên cPanel/DirectAdmin**: 
      - Chỉ cần Upload và Extract file ZIP lên thư mục `public_html`.
-     - Cấu hình lại `.env` (`APP_ENV=production`, `APP_DEBUG=false`).
+     - Cấu hình lại `.env` (Đã có sẵn file mẫu `.env.production` dùng để copy đè cấu hình thật).
      - Không cần Export/Import cơ sở dữ liệu MySQL, mọi dữ liệu Leads cũ đều đi kèm trong SQLite an toàn và tiện lợi.
 
-3. **Bảo mật trang Admin**: Route `/admin/leads` hiện chưa có middleware xác thực (`auth`). Khuyến nghị bổ sung cơ chế đăng nhập (Authentication) trong tương lai.
+3. **Quản lý Phiên bản (Version Control - Git)**:
+   - Dự án đã được đẩy lên GitHub tại repo `lamhongbac/msaWeb`.
+   - Có 2 nhánh chính:
+     - Nhánh **`dev`**: Dùng để lập trình các tính năng mới cục bộ.
+     - Nhánh **`prod`**: Lưu giữ cấu hình thật (Chứa file `.env.production` làm chuẩn), code ổn định để sẵn sàng nén ZIP đưa lên máy chủ.
+
+4. **Bảo mật trang Admin**: Route `/admin/leads` hiện chưa có middleware xác thực (`auth`). Khuyến nghị bổ sung cơ chế đăng nhập (Authentication) trong tương lai.
