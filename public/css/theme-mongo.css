@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --mongo-bg: #ffffff;
+    --mongo-bg-alt: #f4f8f9;
+    --mongo-dark: #112a2d;
+    --mongo-text: #4a5d60;
+    --mongo-green: #e97f32;
+    --mongo-green-dark: #368187;
+    --mongo-border: #d2dedf;
+}
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: var(--mongo-bg);
+    color: var(--mongo-text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--mongo-dark);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-top: 0;
+}
+
+/* HERO SECTION */
+.hero-mongo {
+    padding: 120px 20px 80px;
+    background: var(--mongo-bg);
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.hero-mongo h1 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    margin-bottom: 24px;
+}
+.hero-mongo h1 em {
+    font-style: normal;
+    color: var(--mongo-green-dark);
+}
+.hero-mongo p {
+    font-size: 1.25rem;
+    max-width: 760px;
+    margin: 0 auto 40px;
+    color: var(--mongo-text);
+    font-weight: 400;
+}
+
+/* BUTTONS */
+.btn-mongo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+    font-family: 'Inter', sans-serif;
+}
+.btn-mongo-primary {
+    background-color: var(--mongo-green);
+    color: #ffffff;
+}
+.btn-mongo-primary:hover {
+    background-color: #cf681f;
+    transform: translateY(-2px);
+}
+.btn-mongo-secondary {
+    background-color: transparent;
+    color: var(--mongo-dark);
+    border-color: var(--mongo-dark);
+}
+.btn-mongo-secondary:hover {
+    background-color: var(--mongo-bg-alt);
+}
+.btn-mongo-dark {
+    background-color: var(--mongo-dark);
+    color: #fff;
+}
+.btn-mongo-dark:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+}
+
+/* LAYOUT & SECTIONS */
+.section-mongo {
+    padding: 120px 20px;
+}
+.section-alt {
+    background-color: var(--mongo-bg-alt);
+    border-top: 1px solid var(--mongo-border);
+    border-bottom: 1px solid var(--mongo-border);
+}
+.container-mongo {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.sectionhead-mongo {
+    text-align: left;
+    margin-bottom: 60px;
+    max-width: 600px;
+}
+.sectionhead-mongo.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+}
+.kicker-mongo {
+    color: var(--mongo-green-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+.sectionhead-mongo h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 20px;
+}
+.sectionhead-mongo p {
+    font-size: 1.125rem;
+    color: var(--mongo-text);
+}
+
+/* CARDS GRID */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+.card-mongo {
+    background: #fff;
+    border: 1px solid var(--mongo-border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.card-mongo:hover {
+    box-shadow: 0 16px 40px rgba(0, 30, 43, 0.08);
+    transform: translateY(-4px);
+}
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--mongo-bg-alt);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--mongo-green-dark);
+}
+.card-mongo h3 {
+    font-size: 1.5rem;
+    margin: 0 0 12px;
+}
+.card-mongo p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--mongo-text);
+}
+.card-mongo .num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--mongo-green-dark);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+
+/* SPLIT SECTION */
+.split-mongo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+.list-features {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0 0 0;
+}
+.list-features li {
+    position: relative;
+    padding-left: 36px;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    color: var(--mongo-dark);
+    font-weight: 500;
+}
+.list-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--mongo-green-dark);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+.list-features li span {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--mongo-text);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+/* STATS BAR */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--mongo-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 30, 43, 0.03);
+}
+.stat-mongo {
+    padding: 40px 24px;
+    text-align: center;
+    border-right: 1px solid var(--mongo-border);
+}
+.stat-mongo:last-child { border-right: none; }
+.stat-mongo strong {
+    display: block;
+    font-size: 3.5rem;
+    color: var(--mongo-green-dark);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+.stat-mongo span {
+    font-size: 0.875rem;
+    color: var(--mongo-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* FINAL CTA */
+.final-mongo {
+    background-color: var(--mongo-dark);
+    color: #fff;
+    padding: 120px 20px;
+    text-align: center;
+}
+.final-mongo h2 {
+    color: #fff;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    margin-bottom: 24px;
+}
+.final-mongo p {
+    color: #aeb9be;
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+.final-mongo .kicker-mongo {
+    color: var(--mongo-green); /* Contrast on dark */
+}
+
+/* FOOTER & MODAL OVERRIDES */
+footer { background: #fff !important; border-top: 1px solid var(--mongo-border) !important; font-family: 'Inter', sans-serif !important; }
+
+.modal { background: rgba(17, 42, 45, 0.6) !important; backdrop-filter: blur(4px) !important; }
+.modalbox { background: #fff !important; border: none !important; border-radius: 12px !important; box-shadow: 0 18px 36px rgba(17, 42, 45,0.15) !important; font-family: 'Inter', sans-serif !important; width: min(390px, 100%) !important; padding: 26px 22px !important; }
+.modalbox h3 { color: var(--mongo-dark) !important; font-weight: 800 !important; font-size: 20px !important; margin-bottom: 6px !important; }
+.modalbox p { font-size: 11px !important; margin-bottom: 15px !important; }
+label { color: var(--mongo-dark) !important; font-family: 'Inter', sans-serif !important; font-weight: 600 !important; font-size: 11px !important; margin: 10px 0 5px !important; }
+input, textarea, select { background: #fff !important; color: var(--mongo-dark) !important; border: 1px solid var(--mongo-border) !important; font-family: 'Inter', sans-serif !important; border-radius: 6px !important; padding: 10px 12px !important; font-size: 12px !important; }
+input:focus, textarea:focus, select:focus { border-color: var(--mongo-green-dark) !important; box-shadow: 0 0 0 3px rgba(54, 129, 135, 0.1) !important; background: #fff !important;}
+.modalbox .btn.primary { background: var(--mongo-green) !important; color: #ffffff !important; border-radius: 6px !important; font-weight: 600 !important; border: none !important; padding: 12px !important; font-size: 13px !important; margin-top: 14px !important; }
+.modalbox .btn.primary:hover { background: #cf681f !important; }
+
+@media (max-width: 900px) {
+    .split-mongo { grid-template-columns: 1fr; gap: 40px; }
+    .stats-container { grid-template-columns: repeat(2, 1fr); }
+    .stat-mongo:nth-child(2) { border-right: none; }
+    .stat-mongo:nth-child(-n+2) { border-bottom: 1px solid var(--mongo-border); }
+}
+@media (max-width: 600px) {
+    .stats-container { grid-template-columns: 1fr; }
+    .stat-mongo { border-right: none !important; border-bottom: 1px solid var(--mongo-border); }
+    .stat-mongo:last-child { border-bottom: none; }
+}
